@@ -90,9 +90,15 @@ public class ServletController extends HttpServlet {
 			response.setContentType("charset=UTF-8");
 			response.getWriter().write(viewORdata);
 		} else {
-			// view 페이지일 경우 forward
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/" + viewORdata + ".jsp");
-			rd.forward(request, response);
+			// "redirect:index.do" 와 같이 반환 시 Redirect
+			if(viewORdata.startsWith("redirect:")) {
+				String redirectURL = viewORdata.substring(9);
+				response.sendRedirect(redirectURL);
+			} else {
+				// 일반 jsp 파일명 반환 시 forward 이동
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/" + viewORdata + ".jsp");
+				rd.forward(request, response);
+			}
 		}
 	}
 	
