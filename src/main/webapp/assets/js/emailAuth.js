@@ -1,16 +1,22 @@
 // Email Check boolean
-var keyCheck = 0;
+var isKeyCheck = 0;
 var isTimeout = 0;
 var authKey = null;
 
 
 // 이메일 전송 함수
 function sendKey(){
+	var email = $("#email").val();
+	if(email == "") {
+		alert("이메일을 입력해 주세요!");
+		return;
+	}
+	
     $.ajax({
     	url:"sendMail.do",
         type:"post",
         dataType:"text",
-        data:{"email" : $("#email").val()},
+        data:{"email" : email},
         success: function(data){
 			document.getElementById("emailConfirm").style.display = "block";
 			timeAttack();
@@ -31,15 +37,21 @@ function checKey(){
 
 	if(isTimeout == 1) {
 		alert("시간이 초과되었습니다!");
-		keyCheck = 0;
+		isKeyCheck = 0;
 		return;
 	}
     if(inputKey == authKey){
+		document.getElementById("timeAttack").style.display = 'none';
+		document.getElementById("email").readOnly = true;
+		document.getElementById("authKey").readOnly = true;
+		document.getElementById("btnsendKey").disabled = true;
+		document.getElementById("btnchecKey").disabled = true;
+		
         alert("인증되었습니다.");
-        keyCheck = 1;
+        isKeyCheck = 1;
         return;
     }
-    alert("번호가 다릅니다.");
+    alert("인증번호가 틀렸습니다.");
     return;
 }
 

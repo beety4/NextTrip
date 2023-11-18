@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter"%>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
   <head>
@@ -35,6 +36,35 @@
 
 
   <body>
+    <%
+    	// 에러코드 반환 시 보여줄 alert 처리
+    	// 각 Service 에서 response로 반환해도 가능하지만 쉬운 에러 메세지 관리를 위해 한곳에 정리
+    	if(request.getParameter("msg") != null) {
+    		PrintWriter errOut = response.getWriter();
+    		int msg = Integer.parseInt(request.getParameter("msg"));
+    		switch(msg) {
+    			// 회원가입 에러 처리
+    			case 101:
+    				errOut.println("<script>alert('회원가입 도중 에러가 발생했습니다!');history.back();</script>");
+    				errOut.close();
+    				break;
+    			// 로그인 에러 처리
+    			case 201:
+    				errOut.println("<script>alert('패스워드가 일치하지 않습니다!');history.back();</script>");
+    				errOut.close();
+    				break;
+    			case 202:
+    				errOut.println("<script>alert('존재하지 않는 아이디 입니다!');history.back();</script>");
+    				errOut.close();
+    				break;
+				// 기본 에러 전부 여기로
+    			default:
+    				errOut.println("<script>alert('알 수 없는 에러입니다. 관리자에게 문의하세요!');</script>");
+    				errOut.close();
+    				break;
+    		}
+    	}
+    %>
 
     <!-- ===============================================-->
     <!--    Main Content-->
@@ -49,7 +79,23 @@
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="#destination">여행지</a></li>
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="tripReview.do">여행후기</a></li>
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="myTrip.do">내 여행</a></li>
+              <%
+              	if((String)session.getAttribute("sID") == null) {
+              %>
               <li class="nav-item px-3 px-xl-4"><a class="btn btn-outline-dark order-1 order-lg-0 fw-medium" href="sign-in.do">로그인</a></li>
+              <%
+              	} else {
+              		String sID = (String)session.getAttribute("sID");
+              		String sNAME = (String)session.getAttribute("sNAME");
+              		String sIMG = (String)session.getAttribute("sIMG");
+              %>
+              <a class="nav-link fw-medium" aria-current="page" href="myProfile.do">
+              	<li class="nav-item px-3 px-xl-4"><%=sNAME %>
+              	<img src="assets/img/profileIMG/<%=sIMG %>" width="30px;"></li>
+              </a>
+              <%
+              	}
+              %>
             </ul>
           </div>
         </div>

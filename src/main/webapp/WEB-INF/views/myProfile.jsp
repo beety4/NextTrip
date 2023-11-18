@@ -3,8 +3,16 @@
 <%@ include file="header.jsp"%>
 
 
-TRIP REVIEW
 
+<section class="pt-5" style="padding-top: 5rem; margin-top: 100px;">
+<div class="container-fluid h-custom">
+
+
+	Edir Profile
+
+
+</div>
+</section>
 
 
 

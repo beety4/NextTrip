@@ -50,7 +50,7 @@ function registerCHK() {
 		alert("생년월일을 입력해주세요");
 		return false;
 	}
-	if (keyCheck == 0) {
+	if (isKeyCheck == 0) {
 		alert("이메일 인증을 완료해주세요");
 		return false;
 	}

@@ -37,6 +37,27 @@ public class UserDAO {
 		return -1;
 	}
 	
+	// ID 으로 Name 가져오는 DAO
+	public UserDTO getValueByID(String id) {
+		String query = "SELECT * FROM user_table WHERE id = ?";
+		ResultSet rs = null;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				UserDTO userDTO = new UserDTO();
+				userDTO.setName(rs.getString(3));
+				userDTO.setImg(rs.getString(8));
+				return userDTO;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	// 회원가입 DAO
 		public int register(UserDTO userDTO) {
 			String query = "INSERT INTO user_table(id,password,name,birth,gender,email) VALUES(?,?,?,?,?,?)";

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="header.jsp"%>
+<%@ page import="dto.UserDTO" %>
+
 
 <style>
 	.emailInputSize {
@@ -73,13 +75,13 @@
           <div class="form-outline mb-3">
             <input type="email" id="email" name="email" class="form-control form-control-lg emailInputSize"
               placeholder="Enter Email Address" />
-            <button type="button" class="btn btn-primary emailInputBtn" onclick="sendKey();">전송</button>
+            <button id="btnsendKey" type="button" class="btn btn-primary emailInputBtn" onclick="sendKey();">전송</button>
           </div>
           
           <div id="emailConfirm" class="form-outline mb-3" style="display : none;">
             <input type="email" id="authKey" name="authKey" class="form-control form-control-lg emailInputSize"
               placeholder="Enter Email AuthKey" />
-            <button type="button" class="btn btn-primary emailInputBtn" onclick="checKey();">확인</button>
+            <button id="btnchecKey" type="button" class="btn btn-primary emailInputBtn" onclick="checKey();">확인</button>
           </div>
 
 		  <div id="timeAttack" style="display : none;"></div>
@@ -91,7 +93,6 @@
             <p class="small fw-bold mt-2 pt-1 mb-0">Do you already have an account? <a href="sign-in.do"
                 class="link-danger">Login</a></p>
           </div>
-
         </form>
       </div>
     </div>
