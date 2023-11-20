@@ -60,6 +60,10 @@
     				out.println("<script>alert('프로필 수정에 실패하였습니다!');history.back();</script>");
     				out.close();
     				break;
+    			case 401:
+    				out.println("<script>alert('로그인이 필요한 서비스 입니다!');history.back();</script>");
+    				out.close();
+    				break;
 				// 기본 에러 전부 여기로
     			default:
     				out.println("<script>alert('알 수 없는 에러입니다. 관리자에게 문의하세요!');</script>");

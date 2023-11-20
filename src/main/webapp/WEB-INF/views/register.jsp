@@ -15,7 +15,7 @@
 		margin-left : 30px; 
 	}
 </style>
-<script src="assets/js/emailAuth.js"></script>
+<script src="assets/js/async/emailAuth.js"></script>
 <script src="assets/js/validate.js"></script>
 
 

@@ -69,7 +69,7 @@ public class ServletController extends HttpServlet {
 		
 		// Ajax 비동기 통신일 경우 - data 반환
 		if("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
-			response.setContentType("charset=UTF-8");
+			response.setContentType("text/html;charset=UTF-8");
 			response.getWriter().write(viewORdata);
 		} else {
 			// "redirect:index.do" 와 같이 반환 시 Redirect
