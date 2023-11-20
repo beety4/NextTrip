@@ -23,6 +23,7 @@ function sendKey(){
             authKey = data;
         },
         error: function(request, status, error) {
+			alert('이메일 인증에 실패하였습니다! 다시 시도해주세요');
 			console.log("code : " + request.status);
 			console.log("message : " + request.responseText);
 			console.log("error : " + error);

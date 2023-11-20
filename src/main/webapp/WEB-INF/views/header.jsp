@@ -40,27 +40,30 @@
     	// 에러코드 반환 시 보여줄 alert 처리
     	// 각 Service 에서 response로 반환해도 가능하지만 쉬운 에러 메세지 관리를 위해 한곳에 정리
     	if(request.getParameter("msg") != null) {
-    		PrintWriter errOut = response.getWriter();
     		int msg = Integer.parseInt(request.getParameter("msg"));
     		switch(msg) {
     			// 회원가입 에러 처리
     			case 101:
-    				errOut.println("<script>alert('회원가입 도중 에러가 발생했습니다!');history.back();</script>");
-    				errOut.close();
+    				out.println("<script>alert('회원가입 도중 에러가 발생했습니다!');history.back();</script>");
+    				out.close();
     				break;
     			// 로그인 에러 처리
     			case 201:
-    				errOut.println("<script>alert('패스워드가 일치하지 않습니다!');history.back();</script>");
-    				errOut.close();
+    				out.println("<script>alert('패스워드가 일치하지 않습니다!');history.back();</script>");
+    				out.close();
     				break;
     			case 202:
-    				errOut.println("<script>alert('존재하지 않는 아이디 입니다!');history.back();</script>");
-    				errOut.close();
+    				out.println("<script>alert('존재하지 않는 아이디 입니다!');history.back();</script>");
+    				out.close();
+    				break;
+    			case 301:
+    				out.println("<script>alert('프로필 수정에 실패하였습니다!');history.back();</script>");
+    				out.close();
     				break;
 				// 기본 에러 전부 여기로
     			default:
-    				errOut.println("<script>alert('알 수 없는 에러입니다. 관리자에게 문의하세요!');</script>");
-    				errOut.close();
+    				out.println("<script>alert('알 수 없는 에러입니다. 관리자에게 문의하세요!');</script>");
+    				out.close();
     				break;
     		}
     	}
@@ -75,8 +78,8 @@
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base align-items-lg-center align-items-start">
-              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="#service">소개</a></li>
-              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="#destination">여행지</a></li>
+              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="index.do#service">소개</a></li>
+              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="index.do#destination">여행지</a></li>
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="tripReview.do">여행후기</a></li>
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="myTrip.do">내 여행</a></li>
               <%
@@ -89,10 +92,18 @@
               		String sNAME = (String)session.getAttribute("sNAME");
               		String sIMG = (String)session.getAttribute("sIMG");
               %>
-              <a class="nav-link fw-medium" aria-current="page" href="myProfile.do">
-              	<li class="nav-item px-3 px-xl-4"><%=sNAME %>
-              	<img src="assets/img/profileIMG/<%=sIMG %>" width="30px;"></li>
+              
+              <li class="nav-item dropdown px-3 px-lg-0">
+              <a class="d-inline-block ps-0 py-2 pe-3 text-decoration-none dropdown-toggle fw-medium" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              	<%=sNAME %>
+              	<img src="assets/img/profileIMG/<%=sIMG %>" width="30px;">
               </a>
+                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" style="border-radius:0.3rem;" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="myProfile.do">내 정보</a></li>
+                  <li><a class="dropdown-item" href="logout.do">로그아웃</a></li>
+                </ul>
+              </li>
+
               <%
               	}
               %>

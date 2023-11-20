@@ -12,37 +12,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import config.Gmailconn;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import config.CryptoModule;
 
-public class MailService implements CommandHandler {
-	
-	@Override
-	public String process(HttpServletRequest request, HttpServletResponse response) {
-		// 요청 Method 판별 후 메소드 실행
-		if("GET".equals(request.getMethod())) {
-			return processGet(request, response);
-		} else {
-			return processPost(request, response);
-		}
-	}
-	
-	// GetMapping("sign-in.do")
-	private String processGet(HttpServletRequest request, HttpServletResponse response) {
-		return null;
-	}
-	
-	// PostMapping("sign-in.do")
-	private String processPost(HttpServletRequest request, HttpServletResponse response) {
-		String email = request.getParameter("email");
-		String authKey = sendtoMail(email);
-		return authKey;
-	}
-	
-	
-	
-	private String sendtoMail(String email) {
+public class MailService {
+	public String sendtoMail(String email) {
 		CryptoModule cryptoModule = new CryptoModule();
 		String to = email;
 		// 랜덤 인증키 생성

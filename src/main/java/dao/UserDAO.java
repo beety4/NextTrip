@@ -4,15 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import config.Mysql;
 import config.CryptoModule;
-
+import config.Mysql;
 import dto.UserDTO;
 
 public class UserDAO {
 	private Connection conn = Mysql.getConnection();
 	private CryptoModule cryptoModule = new CryptoModule();
-	
+
 	// 로그인 DAO
 	public int login(String id, String password) {
 		String query = "SELECT password FROM user_table WHERE id = ?";
@@ -21,24 +20,24 @@ public class UserDAO {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, id);
-			
+
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				if(rs.getString(1).equals(digest)) {
+			if (rs.next()) {
+				if (rs.getString(1).equals(digest)) {
 					return 1;
 				} else {
 					return 0;
 				}
 			}
 			return -2;
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return -1;
 	}
-	
-	// ID 으로 Name 가져오는 DAO
-	public UserDTO getValueByID(String id) {
+
+	// ID 으로 UserDTO를 가져오는 DAO
+	public UserDTO getUserDTO(String id) {
 		String query = "SELECT * FROM user_table WHERE id = ?";
 		ResultSet rs = null;
 		try {
@@ -46,9 +45,16 @@ public class UserDAO {
 			pstmt.setString(1, id);
 
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				UserDTO userDTO = new UserDTO();
+				userDTO.setId(rs.getString(1));
+				userDTO.setPassword(rs.getString(2));
 				userDTO.setName(rs.getString(3));
+				userDTO.setBirth(rs.getString(4));
+				userDTO.setGender(rs.getInt(5));
+				userDTO.setEmail(rs.getString(6));
+				userDTO.setJoindate(rs.getString(7));
+				;
 				userDTO.setImg(rs.getString(8));
 				return userDTO;
 			}
@@ -57,26 +63,63 @@ public class UserDAO {
 		}
 		return null;
 	}
-	
-	// 회원가입 DAO
-		public int register(UserDTO userDTO) {
-			String query = "INSERT INTO user_table(id,password,name,birth,gender,email) VALUES(?,?,?,?,?,?)";
-			try {
-				PreparedStatement pstmt = conn.prepareStatement(query);
-				String digest = cryptoModule.getSHA256(userDTO.getPassword());
-				
-				pstmt.setString(1, userDTO.getId());
-				pstmt.setString(2, digest);
-				pstmt.setString(3, userDTO.getName());
-				pstmt.setString(4, userDTO.getBirth());
-				pstmt.setInt(5, userDTO.getGender());
-				pstmt.setString(6, userDTO.getEmail());
 
-				return pstmt.executeUpdate();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return -1;
+	// 회원가입 DAO
+	public int register(UserDTO userDTO) {
+		String query = "INSERT INTO user_table(id,password,name,birth,gender,email) VALUES(?,?,?,?,?,?)";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			String digest = cryptoModule.getSHA256(userDTO.getPassword());
+
+			pstmt.setString(1, userDTO.getId());
+			pstmt.setString(2, digest);
+			pstmt.setString(3, userDTO.getName());
+			pstmt.setString(4, userDTO.getBirth());
+			pstmt.setInt(5, userDTO.getGender());
+			pstmt.setString(6, userDTO.getEmail());
+
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		return -1;
+	}
+
 	
+	
+	// 메소드 오버로딩을 통한 프로필 편집 ( name, password )
+	public int editProfile(String id, String name, String password) {
+		String SQL = "UPDATE user_table SET name = ?, password = ? WHERE id = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			String digest = cryptoModule.getSHA256(password);
+			pstmt.setString(1, name);
+			pstmt.setString(2, digest);
+			pstmt.setString(3, id);
+
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
+	// 메소드 오버로딩을 통한 프로필 편집 ( name, password, img )
+	public int editProfile(String id, String name, String password, String img) {
+		String SQL = "UPDATE user_table SET name = ?, password = ?, img = ? WHERE id = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			String digest = cryptoModule.getSHA256(password);
+			pstmt.setString(1, name);
+			pstmt.setString(2, digest);
+			pstmt.setString(3, img);
+			pstmt.setString(4, id);
+
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
 }

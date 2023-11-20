@@ -12,7 +12,6 @@ public class UserDTO {
 	private String birth;
 	private int gender;
 	private String email;
-	private String authKey;
-	private LocalDate joindate;
+	private String joindate;
 	private String img;
 }

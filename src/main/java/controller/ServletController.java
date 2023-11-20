@@ -15,7 +15,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.CommandHandler;
 
 // mappingURL.properties를 이용해 *.do 매핑
 @WebServlet(urlPatterns = "*.do", 
@@ -24,7 +23,7 @@ import service.CommandHandler;
 public class ServletController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	// 커맨드, 서비스 인스턴스객체 매핑 정보 저장
-    private Map<String, CommandHandler> handlerMap = new HashMap<>();
+    private final Map<String, CommandHandler> handlerMap = new HashMap<>();
 	
     public ServletController() {
         super();
@@ -59,26 +58,9 @@ public class ServletController extends HttpServlet {
 		
 	}
 
-    // Get 요청
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			process(request, response);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	// Post 요청
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			process(request, response);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	// URL 매핑 forward 메소드
-	private void process(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	// URL 매핑 작동 메소드
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String command = request.getRequestURI();
 		command = command.substring(request.getContextPath().length() + 1);
 		

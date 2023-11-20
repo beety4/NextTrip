@@ -78,3 +78,39 @@ function loginCHK() {
     
     document.login.submit();
 }
+
+
+// Profile Update validate
+function editProfile() {
+    var name = document.getElementById("name");
+    var pwPre = document.getElementById("passwordPre");
+    var pw = document.getElementById("password");
+
+
+    if (name.value == "") {
+        alert("이름을 입력하세요");
+        name.focus();
+        return false;
+    }
+    if (pwPre.value == "") {
+        alert("이전 비밀번호를 입력하세요");
+        pwPre.focus();
+        return false;
+    }
+    if (pw.value == "") {
+        alert("이전 비밀번호를 입력하세요");
+        pw.focus();
+        return false;
+    }
+    var pwform = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,15}$/;
+    if (!pwform.test(pw.value)) {
+        alert("영문자+숫자 조합으로 6~15자리 사용해야 합니다");
+        pw.focus();
+        return false;
+    }
+ 
+    
+    document.updateProfile.submit();
+}
+
+
