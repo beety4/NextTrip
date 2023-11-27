@@ -35,7 +35,7 @@
 
           <!-- Email input -->
           <div class="form-outline mb-4">
-            <input type="email" id="id" name="id" class="form-control form-control-lg"
+            <input type="text" id="id" name="id" class="form-control form-control-lg"
               placeholder="Enter ID" />
           </div>
 

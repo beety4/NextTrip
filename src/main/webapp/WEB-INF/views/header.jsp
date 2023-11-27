@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
   <head>
@@ -64,9 +65,13 @@
     				out.println("<script>alert('로그인이 필요한 서비스 입니다!');history.back();</script>");
     				out.close();
     				break;
+    			case 402:
+    				out.println("<script>alert('해당 Plan에 접근권한이 없습니다!');history.back();</script>");
+    				out.close();
+    				break;
 				// 기본 에러 전부 여기로
     			default:
-    				out.println("<script>alert('알 수 없는 에러입니다. 관리자에게 문의하세요!');</script>");
+    				out.println("<script>alert('알 수 없는 에러입니다. 관리자에게 문의하세요!');history.back();</script>");
     				out.close();
     				break;
     		}
@@ -85,7 +90,7 @@
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="index.do#service">소개</a></li>
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="index.do#destination">여행지</a></li>
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="tripReview.do">여행후기</a></li>
-              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="myTrip.do">내 여행</a></li>
+              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="myPlan.do">내 여행</a></li>
               <%
               	if((String)session.getAttribute("sID") == null) {
               %>

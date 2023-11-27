@@ -12,6 +12,6 @@ public class ReviewDTO {
 	private String category;
 	private String content;
 	private LocalDate date;
-	private int hit;
+	private int viewC;
 	private int available;
 }

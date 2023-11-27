@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+
+import dto.PlanDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -20,6 +23,7 @@ public class PlanController implements CommandHandler {
 			case "makePlan.do" -> makePlan(request, response);
 			case "showPlan.do" -> showPlan(request, response);
 			case "changePlanName.do" -> changePlanName(request, response);
+			case "myPlan.do" -> myPlan(request, response);
 			default -> null;
 		};
 	}
@@ -43,13 +47,14 @@ public class PlanController implements CommandHandler {
 	private String showPlan(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("sID");
-		String planNo = request.getParameter("planNo");
+		int planNo = Integer.parseInt(request.getParameter("planNo"));
 
-		if(id == "getPlanID") {
+		PlanDTO planDTO = planService.getPlan(planNo);
+		if(id.equals(planDTO.getId()) == false) {
 			return "redirect:index.do?msg=402";
 		}
 		
-		// get planDTO
+		request.setAttribute("planDTO", planDTO);
 		return "showPlan";
 	}
 
@@ -67,4 +72,19 @@ public class PlanController implements CommandHandler {
 		return String.valueOf(result);
 	}
 
+	
+	
+	// RequestMapping(value = "myPlan.do")
+	private String myPlan(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("sID");
+
+		if(id == null) {
+			return "redirect:index.do?msg=401";
+		}
+		
+		ArrayList<PlanDTO> planList = planService.getPlanList(id);
+		request.setAttribute("planList", planList);
+		return "myPlan";
+	}
 }

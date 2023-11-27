@@ -3,8 +3,8 @@ package dto;
 import lombok.Data;
 
 @Data
-public class ReviewLikeDTO {
+public class ReviewLikeCDTO {
 	private int likeNo;
 	private int reviewNo;
-	private String name;
+	private String id;
 }

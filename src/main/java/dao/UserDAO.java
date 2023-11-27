@@ -48,13 +48,11 @@ public class UserDAO {
 			if (rs.next()) {
 				UserDTO userDTO = new UserDTO();
 				userDTO.setId(rs.getString(1));
-				userDTO.setPassword(rs.getString(2));
 				userDTO.setName(rs.getString(3));
 				userDTO.setBirth(rs.getString(4));
 				userDTO.setGender(rs.getInt(5));
 				userDTO.setEmail(rs.getString(6));
 				userDTO.setJoindate(rs.getString(7));
-				;
 				userDTO.setImg(rs.getString(8));
 				return userDTO;
 			}

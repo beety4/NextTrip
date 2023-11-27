@@ -59,28 +59,31 @@ public class ServletController extends HttpServlet {
 	}
 
 	// URL 매핑 작동 메소드
+	// Front Controller 패턴 사용
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String command = request.getRequestURI();
 		command = command.substring(request.getContextPath().length() + 1);
 		
 		CommandHandler handler = handlerMap.get(command);
 		String viewORdata = handler.process(request, response);
 		
-		// Ajax 비동기 통신일 경우 - data 반환
+		// Ajax 비동기 통신일 경우 - data 반환 ( Early Return 패턴 )
 		if("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
 			response.setContentType("text/html;charset=UTF-8");
 			response.getWriter().write(viewORdata);
+			return;
+		}
+		
+		// "redirect:index.do" 와 같이 반환 시 Redirect
+		if(viewORdata.startsWith("redirect:")) {
+			String redirectURL = viewORdata.substring(9);
+			response.sendRedirect(redirectURL);
 		} else {
-			// "redirect:index.do" 와 같이 반환 시 Redirect
-			if(viewORdata.startsWith("redirect:")) {
-				String redirectURL = viewORdata.substring(9);
-				response.sendRedirect(redirectURL);
-			} else {
-				// 일반 jsp 파일명 반환 시 forward 이동
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/" + viewORdata + ".jsp");
-				rd.forward(request, response);
-			}
+			// 일반 jsp 파일명 반환 시 forward 이동
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/" + viewORdata + ".jsp");
+			rd.forward(request, response);
 		}
 	}
 	

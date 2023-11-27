@@ -42,9 +42,9 @@
             	<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <div class="container-fluid divCenter">
                     	<div style="margin: 10px;">
-                    	<input type="text" id="planName" name="planName" value="" placeholder="Enter Your Plan Name">
+                    	<input type="text" id="planName" name="planName" value="${planDTO.planName }" placeholder="Enter Your Plan Name">
                         <input type="button" class="btn btn-primary" id="planNameConfirm" onclick="setPlanName();" value="확인">
-                        <input type="button" class="btn btn-danger" id="planNameEdit" onclick="toggleItem();" value="수정">
+                        <input type="button" class="btn btn-danger" id="planNameEdit" onclick="toggleItem();" value="수정" style="display: none;">
                         </div>
                     </div>
                 </nav>

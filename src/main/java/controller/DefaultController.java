@@ -21,4 +21,5 @@ public class DefaultController implements CommandHandler {
 		return "index";
 	}
 	
+	
 }
