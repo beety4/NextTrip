@@ -44,32 +44,32 @@
             <div class="col-lg-3 col-sm-6 mb-6">
               <div class="card service-card shadow-hover rounded-3 text-center align-items-center">
                 <div class="card-body p-xxl-5 p-4"> <img src="assets/img/category/icon1.png" width="75" alt="Service" />
-                  <h4 class="mb-3">Calculated Weather</h4>
-                  <p class="mb-0 fw-medium">Built Wicket longer admire do barton vanity itself do in it.</p>
+                  <h4 class="mb-3">쉽고 간편한 계획</h4>
+                  <p class="mb-0 fw-medium">직관적이고 사용하기 편리한 인터페이스로 손쉽게 여행 일정을 계획하세요!</p>
                 </div>
               </div>
             </div>
             <div class="col-lg-3 col-sm-6 mb-6">
               <div class="card service-card shadow-hover rounded-3 text-center align-items-center">
                 <div class="card-body p-xxl-5 p-4"> <img src="assets/img/category/icon2.png" width="75" alt="Service" />
-                  <h4 class="mb-3">Best Flights</h4>
-                  <p class="mb-0 fw-medium">Engrossed listening. Park gate sell they west hard for the.</p>
+                  <h4 class="mb-3">다양한 기능 제공</h4>
+                  <p class="mb-0 fw-medium">목적지 정보, 예산 관리, 스케줄 관리 등 다양한 기능으로 완벽한 여행을 계획하세요!</p>
                 </div>
               </div>
             </div>
             <div class="col-lg-3 col-sm-6 mb-6">
               <div class="card service-card shadow-hover rounded-3 text-center align-items-center">
                 <div class="card-body p-xxl-5 p-4"> <img src="assets/img/category/icon3.png" width="75" alt="Service" />
-                  <h4 class="mb-3">Local Events</h4>
-                  <p class="mb-0 fw-medium">Barton vanity itself do in it. Preferd to men it engrossed listening.</p>
+                  <h4 class="mb-3">다양한 관광지 정보</h4>
+                  <p class="mb-0 fw-medium">한국관광공사의 빅데이터를 기반으로 다양한 관광정보를 제공합니다.</p>
                 </div>
               </div>
             </div>
             <div class="col-lg-3 col-sm-6 mb-6">
               <div class="card service-card shadow-hover rounded-3 text-center align-items-center">
                 <div class="card-body p-xxl-5 p-4"> <img src="assets/img/category/icon4.png" width="75" alt="Service" />
-                  <h4 class="mb-3">Customization</h4>
-                  <p class="mb-0 fw-medium">We deliver outsourced aviation services for military customers</p>
+                  <h4 class="mb-3">생생한 여행 후기</h4>
+                  <p class="mb-0 fw-medium">다른 여행자들과 경험 공유, 팁 교환을 통해 더 풍부한 여행 경험을 쌓으세요!</p>
                 </div>
               </div>
             </div>

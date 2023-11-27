@@ -2,6 +2,7 @@ package controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import service.ApiService;
 
 public class DefaultController implements CommandHandler {
 	
@@ -18,6 +19,8 @@ public class DefaultController implements CommandHandler {
 	
 	// RequestMapping(value = "index.do")
 	private String index(HttpServletRequest request, HttpServletResponse response) {
+		ApiService apiService = new ApiService();
+		apiService.getIndexTour();
 		return "index";
 	}
 	

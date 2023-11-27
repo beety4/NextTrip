@@ -11,7 +11,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import config.Gmailconn;
+import config.GmailConn;
 import config.CryptoModule;
 
 public class MailService {
@@ -53,7 +53,7 @@ public class MailService {
 	        
 		try{
 			// 메세지에 정보 담기
-			Authenticator auth = new Gmailconn();
+			Authenticator auth = new GmailConn();
 		    Session ses = Session.getInstance(p, auth);
 		    MimeMessage msg = new MimeMessage(ses);
 		    msg.setSubject(subject);

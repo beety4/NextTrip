@@ -62,7 +62,7 @@
     				out.close();
     				break;
     			case 401:
-    				out.println("<script>alert('로그인이 필요한 서비스 입니다!');history.back();</script>");
+    				out.println("<script>alert('로그인이 필요한 서비스 입니다!');location.href='sign-in.do';</script>");
     				out.close();
     				break;
     			case 402:
