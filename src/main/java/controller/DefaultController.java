@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+
+import dto.TourSpotDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import service.ApiService;
@@ -20,7 +23,9 @@ public class DefaultController implements CommandHandler {
 	// RequestMapping(value = "index.do")
 	private String index(HttpServletRequest request, HttpServletResponse response) {
 		ApiService apiService = new ApiService();
-		apiService.getIndexTour();
+		ArrayList<TourSpotDTO> randomTourSpotList =  apiService.getIndexTour();
+		
+		request.setAttribute("randomTourSpotList", randomTourSpotList);
 		return "index";
 	}
 	
