@@ -15,6 +15,7 @@ public class DefaultController implements CommandHandler {
 		String uri = request.getRequestURI().substring(10);
 		return switch(uri) {
 			case "index.do" -> index(request, response);
+			case "error.do" -> error(request, response);
 			default -> null;
 		};
 	}
@@ -29,5 +30,10 @@ public class DefaultController implements CommandHandler {
 		return "index";
 	}
 	
+	
+	// RequestMapping(value = "error.do")
+	private String error(HttpServletRequest request, HttpServletResponse response) {
+		return "error";
+	}
 	
 }

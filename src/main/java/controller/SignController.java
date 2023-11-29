@@ -60,10 +60,10 @@ public class SignController implements CommandHandler {
 			session.setAttribute("sIMG", sIMG);
 			session.setMaxInactiveInterval(60 * 60); // 60초 * 60 -> 1시간
 			return "redirect:index.do";
-		case 0:  return "redirect:sign-in.do?msg=201";
-		case -2: return "redirect:sign-in.do?msg=202";
-		case -1: return "redirect:sign-in.do?msg=999";
-		default: return "redirect:sign-in.do?msg=999";
+		case 0:  return "redirect:error.do?msg=201";
+		case -2: return "redirect:error.do?msg=202";
+		case -1: return "redirect:error.do?msg=999";
+		default: return "redirect:error.do?msg=999";
 		}
 	}
 
@@ -97,7 +97,7 @@ public class SignController implements CommandHandler {
 		}
 	
 		// 회원가입 실패 시 Redirect 후, msg 로 에러코드 반환
-		return "redirect:sign-up.do?msg=101";
+		return "redirect:error.do?msg=101";
 	}
 
 	
@@ -129,7 +129,7 @@ public class SignController implements CommandHandler {
 			if(result == 1) {
 				return "redirect:myProfile.do";
 			}
-			return "redirect:myProfile.do?msg=301";
+			return "redirect:error.do?msg=301";
 		}
 		// 파일이 있으면 ->  파일 업로드 및 이름,비번 변경
 		
@@ -137,7 +137,7 @@ public class SignController implements CommandHandler {
 		if(result == 1) {
 			return "redirect:myProfile.do";
 		}
-		return "redirect:myProfile.do?msg=301";
+		return "redirect:error.do?msg=301";
 	}
 
 	
@@ -151,7 +151,8 @@ public class SignController implements CommandHandler {
 	
 	
 	
-	//
+	// ResponseBody
+	// RequestMapping(value = "sendMail.do")
 	private String sendMail(HttpServletRequest request, HttpServletResponse response) {
 		// Method = POST
 		if ("POST".equals(request.getMethod())) {

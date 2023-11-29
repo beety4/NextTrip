@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.io.PrintWriter"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
@@ -8,6 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-signin-client_id" content="1087314881525-abntlv67l2sr625qkd8ocle8os2n96nk.apps.googleusercontent.com">
 
 
     <!-- ===============================================-->
@@ -37,47 +37,6 @@
 
 
   <body>
-    <%
-    	// 에러코드 반환 시 보여줄 alert 처리
-    	// 각 Service 에서 response로 반환해도 가능하지만 쉬운 에러 메세지 관리를 위해 한곳에 정리
-    	if(request.getParameter("msg") != null) {
-    		int msg = Integer.parseInt(request.getParameter("msg"));
-    		switch(msg) {
-    			// 회원가입 에러 처리
-    			case 101:
-    				out.println("<script>alert('회원가입 도중 에러가 발생했습니다!');history.back();</script>");
-    				out.close();
-    				break;
-    			// 로그인 에러 처리
-    			case 201:
-    				out.println("<script>alert('패스워드가 일치하지 않습니다!');history.back();</script>");
-    				out.close();
-    				break;
-    			case 202:
-    				out.println("<script>alert('존재하지 않는 아이디 입니다!');history.back();</script>");
-    				out.close();
-    				break;
-    			case 301:
-    				out.println("<script>alert('프로필 수정에 실패하였습니다!');history.back();</script>");
-    				out.close();
-    				break;
-    			case 401:
-    				out.println("<script>alert('로그인이 필요한 서비스 입니다!');location.href='sign-in.do';</script>");
-    				out.close();
-    				break;
-    			case 402:
-    				out.println("<script>alert('해당 Plan에 접근권한이 없습니다!');history.back();</script>");
-    				out.close();
-    				break;
-				// 기본 에러 전부 여기로
-    			default:
-    				out.println("<script>alert('알 수 없는 에러입니다. 관리자에게 문의하세요!');history.back();</script>");
-    				out.close();
-    				break;
-    		}
-    	}
-    %>
-
     <!-- ===============================================-->
     <!--    Main Content-->
     <!-- ===============================================-->
@@ -88,7 +47,7 @@
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base align-items-lg-center align-items-start">
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="index.do#service">소개</a></li>
-              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="index.do#destination">여행지</a></li>
+              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="showTourSpot.do">여행지</a></li>
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="tripReview.do">여행후기</a></li>
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="myPlan.do">내 여행</a></li>
               <%

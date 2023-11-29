@@ -181,7 +181,7 @@
                 <img class="card-img-top" src="${(not empty p.firstimage) ? p.firstimage : ((not empty p.firstimage2) ? p.firstimage2 : 'assets/img/noImage.png') }"  style="height: 60%;"/>
                 <div class="card-body py-4 px-3">
                   <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
-                    <h4 class="text-secondary fw-medium"><a class="link-900 text-decoration-none stretched-link" href="tourspotDetail?contentId=${p.contentId }">${p.title }</a></h4><span class="fs-1 fw-medium"></span>
+                    <h4 class="text-secondary fw-medium"><a class="link-900 text-decoration-none stretched-link" href="showTourSpotDetail.do?contentid=${p.contentid }">${p.title }</a></h4><span class="fs-1 fw-medium"></span>
                   </div>
                   <div class="d-flex align-items-center"> <img src="assets/img/dest/navigation.svg" style="margin-right: 14px" width="20" alt="navigation" /><span class="fs-0 fw-medium">${p.addr1 }</span></div>
                 </div>

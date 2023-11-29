@@ -35,7 +35,7 @@ public class PlanController implements CommandHandler {
 		String id = (String) session.getAttribute("sID");
 
 		if(id == null) {
-			return "redirect:index.do?msg=401";
+			return "redirect:error.do?msg=401";
 		}
 		int planNo = planService.makePlan(id);
 		return "redirect:showPlan.do?planNo=" + planNo;
@@ -51,7 +51,7 @@ public class PlanController implements CommandHandler {
 
 		PlanDTO planDTO = planService.getPlan(planNo);
 		if(id.equals(planDTO.getId()) == false) {
-			return "redirect:index.do?msg=402";
+			return "redirect:error.do?msg=402";
 		}
 		
 		request.setAttribute("planDTO", planDTO);
@@ -66,7 +66,7 @@ public class PlanController implements CommandHandler {
 		String id = (String) session.getAttribute("sID");
 		String planName = request.getParameter("planName");
 		if(id == null) {
-			return "redirect:index.do?msg=401";
+			return "redirect:error.do?msg=401";
 		}
 		int result = planService.setPlanName(id, planName);
 		return String.valueOf(result);
@@ -80,7 +80,7 @@ public class PlanController implements CommandHandler {
 		String id = (String) session.getAttribute("sID");
 
 		if(id == null) {
-			return "redirect:index.do?msg=401";
+			return "redirect:error.do?msg=401";
 		}
 		
 		ArrayList<PlanDTO> planList = planService.getPlanList(id);

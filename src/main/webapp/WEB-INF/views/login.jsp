@@ -4,6 +4,10 @@
 
 
 <script type="text/javascript" src="assets/js/validate.js"></script>
+<script type="text/javascript" src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+<!-- 
+<script type="text/javascript" src="assets/js/oAuthProcess.js"></script>
+-->
 
 <section class="pt-5" style="padding-top: 5rem; margin-top: 100px;">
 <div class="container-fluid h-custom">
@@ -16,9 +20,57 @@
         <form action="sign-in.do" method="post" name="login">
           <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
             <p class="lead fw-normal mb-0 me-3">Sign in with</p>
-            <button type="button" class="btn btn-primary btn-floating mx-1">
-              <i class="fab fa-facebook-f"></i>
+            <button type="button" class="btn btn-primary btn-floating mx-1" onclick="javascript:void(0);">
+              <img src="assets/img/google.png" width="20px;">
             </button>
+            
+        
+			
+			<input type="button" id="loginBtn" value="login">
+			<div id="googleSigninButton" style="display:none;"></div>
+			<br><br><br>
+			<span id="result"></span>
+			
+            
+            
+            <input type="button" onclick="startOAuthFlow();" value="Google OAuth"></input>
+            
+            
+            <script>
+            function startOAuthFlow() {
+                // 상태 토큰 생성 (CSRF 방지를 위해 사용)
+                var state = generateStateToken();
+
+                // 인증 엔드포인트 URL 생성
+                var authorizationUrl = "https://accounts.google.com/o/oauth2/v2/auth" +
+                                       "?response_type=code" +
+                                   	   "&scope=https://www.googleapis.com/auth/drive.metadata.readonly" +
+                                       "&client_id=1087314881525-abntlv67l2sr625qkd8ocle8os2n96nk.apps.googleusercontent.com"+
+                                       "&redirect_uri=http://localhost:8080/login/oauth2/code/google"+
+                                       "&state=" + state;
+
+                // 사용자를 OAuth 인증 페이지로 리다이렉션
+                window.location.href = authorizationUrl;
+            }
+            
+            function generateStateToken() {
+                return Math.random().toString(36).substring(2, 15) +
+                       Math.random().toString(36).substring(2, 15);
+            }
+            
+            
+       		</script>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
 
             <button type="button" class="btn btn-primary btn-floating mx-1">
               <i class="fab fa-twitter"></i>
