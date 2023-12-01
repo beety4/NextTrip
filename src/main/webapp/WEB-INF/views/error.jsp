@@ -40,6 +40,23 @@
     				out.println("<script>alert('402: 해당 Plan에 접근권한이 없습니다!');history.back();</script>");
     				out.close();
     				break;
+    			// 리뷰 게시판 에러 처리
+    			case 503:
+    				out.println("<script>alert('503: 해당 게시글에 대한 엑세스 권한이 없습니다!');history.back();</script>");
+    				out.close();
+    				break;
+    			case 504:
+    				out.println("<script>alert('504: 존재하지 않는 게시글 입니다!');history.back();</script>");
+    				out.close();
+    				break;
+    			case 505:
+    				out.println("<script>alert('505: 검색어를 입력해 주세요!');history.back();</script>");
+    				out.close();
+    				break;
+    			case 506:
+    				out.println("<script>alert('506: 접근 권한이 없습니다!');history.back();</script>");
+    				out.close();
+    				break;
 				// 기본 에러 전부 여기로
     			default:
     				out.println("<script>alert('999: 알 수 없는 에러입니다. 관리자에게 문의하세요!');history.back();</script>");

@@ -20,14 +20,15 @@ public class SignController implements CommandHandler {
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// 서비스 묶음
 		String uri = request.getRequestURI().substring(10);
-		return switch(uri) {
-			case "sign-in.do" -> signin(request, response);
-			case "sign-up.do" -> signup(request, response);
-			case "myProfile.do" -> myProfile(request, response);
-			case "logout.do" -> logout(request, response);
-			case "sendMail.do" -> sendMail(request, response);
-			default -> null;
-		};
+		switch(uri) {
+			case "sign-in.do": return signin(request, response);
+			case "sign-up.do": return signup(request, response);
+			case "myProfile.do": return myProfile(request, response);
+			case "logout.do": return logout(request, response);
+			case "sendMail.do": return sendMail(request, response);
+			case "login/oauth2/code/google.do": return googleOAuth2(request,response);
+			default: return null;
+		}
 	}
 
 	
@@ -161,6 +162,28 @@ public class SignController implements CommandHandler {
 			return authKey;
 		}
 		return null;
+	}
+	
+	
+	// RequestMapping(value = "login/oauth2/code/google.do")
+	private String googleOAuth2(HttpServletRequest request, HttpServletResponse response) {
+		// Method = Get
+		if ("GET".equals(request.getMethod())) {
+			// redirectURL 로 code를 가지고 돌아온다면 login.jsp의 js 실행을 위해
+			// 다시 login 으로 request를 forward하여 로그인 정보 받아오기
+			return "login";
+		}
+		// Method = Post
+		HttpSession session = request.getSession();
+		String userInfo = request.getParameter("userInfo");
+		UserDTO userDTO = signService.oAuthLogin(userInfo);
+		
+		session.setAttribute("sID", userDTO.getId());
+		session.setAttribute("sNAME", userDTO.getName());
+		session.setAttribute("sIMG", userDTO.getImg());
+		session.setMaxInactiveInterval(60 * 60); // 60초 * 60 -> 1시간
+		
+		return "1";
 	}
 
 }

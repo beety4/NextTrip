@@ -92,27 +92,27 @@
             <div class="col-lg-6">
               <div class="mb-4 text-start">
                 <h5 class="text-secondary">Easy and Fast </h5>
-                <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold font-cursive text-capitalize">Book your next trip in 3 easy steps</h3>
+                <h3 class="fs-xl-10 fs-lg-8 fs-7 fw-bold text-capitalize">여행에 있어서 가장 중요한 3가지 팁!!</h3>
               </div>
               <div class="d-flex align-items-start mb-5">
                 <div class="bg-primary me-sm-4 me-3 p-3" style="border-radius: 13px"> <img src="assets/img/steps/selection.svg" width="22" alt="steps" /></div>
                 <div class="flex-1">
-                  <h5 class="text-secondary fw-bold fs-0">Choose Destination</h5>
-                  <p>Choose your favourite place. No matter <br class="d-none d-sm-block"> where you travel inside the World.</p>
+                  <h5 class="text-secondary fw-bold fs-0">여분 보조배터리 챙기기</h5>
+                  <p>여행중 스마트폰은 필수죠! <br class="d-none d-sm-block"> 보조배터리는 당신의 휴대폰에게 활력을 줄겁니다~!</p>
                 </div>
               </div>
               <div class="d-flex align-items-start mb-5">
                 <div class="bg-danger me-sm-4 me-3 p-3" style="border-radius: 13px"> <img src="assets/img/steps/water-sport.svg" width="22" alt="steps" /></div>
                 <div class="flex-1">
-                  <h5 class="text-secondary fw-bold fs-0">Make Payment</h5>
-                  <p>After find your perfect spot, make your <br class="d-none d-sm-block"> payment and get ready to travel.</p>
+                  <h5 class="text-secondary fw-bold fs-0">상비약, 여행자보험</h5>
+                  <p>여행중엔 무슨일이 일어날지 모릅니다! <br class="d-none d-sm-block">항상 여권을 가지고, 여행자보험에 가입하세요!</p>
                 </div>
               </div>
               <div class="d-flex align-items-start mb-5">
                 <div class="bg-info me-sm-4 me-3 p-3" style="border-radius: 13px"> <img src="assets/img/steps/taxi.svg" width="22" alt="steps" /></div>
                 <div class="flex-1">
-                  <h5 class="text-secondary fw-bold fs-0">Reach Airport on Selected Date</h5>
-                  <p>Lastly, you have to arrive at the airport <br class="d-none d-sm-block"> on time and enjoy the vacation.</p>
+                  <h5 class="text-secondary fw-bold fs-0">NextTrip과 함께!</h5>
+                  <p>즐거운 여행을 위해 철저한 계획은 필수입니다!<br class="d-none d-sm-block">NextTrip과 함께 즐거운 여행계획을 세워요~</p>
                 </div>
               </div>
             </div>

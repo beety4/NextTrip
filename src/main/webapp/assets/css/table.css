@@ -14,93 +14,13 @@ body,html {
     font-family: sans-serif
 }
 
-a {
-    margin: 0;
-    transition: all .4s;
-    -webkit-transition: all .4s;
-    -o-transition: all .4s;
-    -moz-transition: all .4s
-}
 
-a:focus {
-    outline: none!important
-}
-
-a:hover {
-    text-decoration: none
-}
-
-h1,h2,h3,h4,h5,h6 {
-    margin: 0
-}
-
-p {
-    margin: 0
-}
-
-ul,li {
-    margin: 0;
-    list-style-type: none
-}
-
-input {
-    display: block;
-    outline: none;
-    border: none!important
-}
-
-textarea {
-    display: block;
-    outline: none
-}
-
-textarea:focus,input:focus {
-    border-color: transparent!important
-}
-
-button {
-    outline: none!important;
-    border: none;
-    background: 0 0
-}
-
-button:hover {
-    cursor: pointer
-}
-
-iframe {
-    border: none!important
-}
 
 .limiter {
     width: 100%;
     margin: 0 auto
 }
 
-.container-table100 {
-    width: 100%;
-    min-height: 100vh;
-    /*
-    background: #c850c0;
-    background: -webkit-linear-gradient(45deg,#4158d0,#c850c0);
-    background: -o-linear-gradient(45deg,#4158d0,#c850c0);
-    background: -moz-linear-gradient(45deg,#4158d0,#c850c0);
-    background: linear-gradient(45deg,#4158d0,#c850c0);
-    */
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 33px 30px
-}
-
-.wrap-table100 {
-    width: 1170px
-}
 
 table {
     border-spacing: 1;
@@ -155,7 +75,8 @@ table td.r,table th.r {
     font-size: 18px;
     color: #fff;
     line-height: 1.2;
-    font-weight: unset
+    font-weight: unset;
+    text-align: center;
 }
 
 tbody tr:nth-child(even) {
@@ -176,34 +97,40 @@ tbody tr:hover {
     cursor: pointer
 }
 
+
 .column1 {
-    width: 260px;
-    padding-left: 40px
+    width: 15%;
+    padding-left: 40px;
+    text-align: center;
 }
 
 .column2 {
-    width: 160px
+    width: 40%;
+    text-align: center;
 }
 
 .column3 {
-    width: 245px
+    width: 15%;
+    text-align: center;
 }
 
 .column4 {
-    width: 110px;
-    text-align: right
+    width: 15%;
+    text-align: center;
 }
 
 .column5 {
-    width: 170px;
-    text-align: right
+    width: 15%;
+    padding-right: 62px;
+    text-align: center;
 }
 
-.column6 {
-    width: 222px;
-    text-align: right;
-    padding-right: 62px
+.setRight {
+	display: flex;
+	justify-content:flex-end;
+	float:right;
 }
+
 
 @media screen and (max-width: 992px) {
     table {

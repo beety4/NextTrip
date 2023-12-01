@@ -19,13 +19,13 @@ public class PlanController implements CommandHandler {
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// 서비스 묶음
 		String uri = request.getRequestURI().substring(10);
-		return switch (uri) {
-			case "makePlan.do" -> makePlan(request, response);
-			case "showPlan.do" -> showPlan(request, response);
-			case "changePlanName.do" -> changePlanName(request, response);
-			case "myPlan.do" -> myPlan(request, response);
-			default -> null;
-		};
+		switch(uri) {
+			case "makePlan.do": return makePlan(request, response);
+			case "showPlan.do": return showPlan(request, response);
+			case "changePlanName.do": return changePlanName(request, response);
+			case "myPlan.do": return myPlan(request, response);
+			default: return null;
+		}
 	}
 
 	

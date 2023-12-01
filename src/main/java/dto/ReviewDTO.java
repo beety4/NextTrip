@@ -1,17 +1,22 @@
 package dto;
 
-import java.time.LocalDate;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ReviewDTO {
 	private int reviewNo;
 	private String name;
 	private String title;
-	private String category;
+	private String region;
 	private String content;
-	private LocalDate date;
+	private String date;
 	private int viewC;
+	private int likeC;
 	private int available;
 }

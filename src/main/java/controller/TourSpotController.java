@@ -14,11 +14,11 @@ public class TourSpotController implements CommandHandler {
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// 서비스 묶음
 		String uri = request.getRequestURI().substring(10);
-		return switch(uri) {
-			case "showTourSpot.do" -> showTourSpot(request, response);
-			case "showTourSpotDetail.do" -> showTourSpotDetail(request, response);
-			default -> null;
-		};
+		switch(uri) {
+			case "showTourSpot.do": return showTourSpot(request, response);
+			case "showTourSpotDetail.do": return showTourSpotDetail(request, response);
+			default: return null;
+		}
 	}
 	
 	

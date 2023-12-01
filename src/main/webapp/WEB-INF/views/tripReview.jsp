@@ -10,144 +10,77 @@
 <section class="pt-5" style="padding-top: 5rem; margin-top: 100px;">
 <div class="container wConfig75">
 
-		<div class="limiter">
-			<div class="container-table100">
-				<div class="wrap-table100">
-					<div class="table100">
-						<table>
-							<thead>
-								<tr class="table100-head">
-									<th class="column1">Date</th>
-									<th class="column2">Order ID</th>
-									<th class="column3">Name</th>
-									<th class="column4">Price</th>
-									<th class="column5">Quantity</th>
-									<th class="column6">Total</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td class="column1">2017-09-29 01:22</td>
-									<td class="column2">200398</td>
-									<td class="column3">iPhone X 64Gb Grey</td>
-									<td class="column4">$999.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$999.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-28 05:57</td>
-									<td class="column2">200397</td>
-									<td class="column3">Samsung S8 Black</td>
-									<td class="column4">$756.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$756.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-26 05:57</td>
-									<td class="column2">200396</td>
-									<td class="column3">Game Console Controller</td>
-									<td class="column4">$22.00</td>
-									<td class="column5">2</td>
-									<td class="column6">$44.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-25 23:06</td>
-									<td class="column2">200392</td>
-									<td class="column3">USB 3.0 Cable</td>
-									<td class="column4">$10.00</td>
-									<td class="column5">3</td>
-									<td class="column6">$30.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-24 05:57</td>
-									<td class="column2">200391</td>
-									<td class="column3">Smartwatch 4.0 LTE Wifi</td>
-									<td class="column4">$199.00</td>
-									<td class="column5">6</td>
-									<td class="column6">$1494.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-23 05:57</td>
-									<td class="column2">200390</td>
-									<td class="column3">Camera C430W 4k</td>
-									<td class="column4">$699.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$699.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-22 05:57</td>
-									<td class="column2">200389</td>
-									<td class="column3">Macbook Pro Retina 2017</td>
-									<td class="column4">$2199.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$2199.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-21 05:57</td>
-									<td class="column2">200388</td>
-									<td class="column3">Game Console Controller</td>
-									<td class="column4">$999.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$999.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-19 05:57</td>
-									<td class="column2">200387</td>
-									<td class="column3">iPhone X 64Gb Grey</td>
-									<td class="column4">$999.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$999.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-18 05:57</td>
-									<td class="column2">200386</td>
-									<td class="column3">iPhone X 64Gb Grey</td>
-									<td class="column4">$999.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$999.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-22 05:57</td>
-									<td class="column2">200389</td>
-									<td class="column3">Macbook Pro Retina 2017</td>
-									<td class="column4">$2199.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$2199.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-21 05:57</td>
-									<td class="column2">200388</td>
-									<td class="column3">Game Console Controller</td>
-									<td class="column4">$999.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$999.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-19 05:57</td>
-									<td class="column2">200387</td>
-									<td class="column3">iPhone X 64Gb Grey</td>
-									<td class="column4">$999.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$999.00</td>
-								</tr>
-								<tr>
-									<td class="column1">2017-09-18 05:57</td>
-									<td class="column2">200386</td>
-									<td class="column3">iPhone X 64Gb Grey</td>
-									<td class="column4">$999.00</td>
-									<td class="column5">1</td>
-									<td class="column6">$999.00</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-
+	<br><br><br>
+	<div>
+	<div>
+		<c:if test="${sID != null }">
+			<input type="button" class="btn btn-primary" value="글 작성" style="float:left;" onclick="location.href='addReview.do'">
+		</c:if>
 	</div>
+	<form action="tripReviewSearch.do" method="post">
+	<div class="setRight">
+		<input type="text" name="pageNo" value="1" style="display:none;">
+		<select class="form-select" name="search">
+  			<option value="1" selected>제목</option>
+  			<option value="2">본문</option>
+  			<option value="3">제목+본문</option>
+		</select>
+		<input type="text" name="searchIt" placeholder="검색할 단어를 입력하세요" style="margin-left : 5px;">
+		<input type="submit" class="btn btn-primary" value="검색" style="margin-left : 5px;">
+	</div>
+	</form>
+	</div>
+	<br><br>
+
+	<div class="limiter">
+		<table>
+			<thead>
+				<tr class="table100-head">
+					<th class="column1">번호</th>
+					<th class="column2">제목</th>
+					<th class="column3">지역</th>
+					<th class="column4">작성일</th>
+					<th class="column5">조회수</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="p" items="${reviewList}">
+					<tr onclick="location.href='tripReviewDetail.do?reviewNo=${p.reviewNo }'">
+						<td class="column1">${p.reviewNo }</td>
+						<td class="column2">${p.title }</td>
+						<td class="column3">${p.region }</td>
+						<td class="column4">${p.date.split(" ")[0] }</td>
+						<td class="column5">${p.viewC }</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+
+	<%
+		// 페이징 처리
+		int totalPage = (int)request.getAttribute("totalPage");
+		int pageNo = (int)request.getAttribute("pageNo");
+		int prev = (pageNo > 1) ? pageNo - 1 : 1;
+		int next = (pageNo < totalPage) ? pageNo + 1 : totalPage;
+
+		
+		if(request.getAttribute("isSearch") == null) {
+	%>
+		<br>
+		<div style="text-align: center;">
+		<a href="tripReview.do?pageNo=<%=prev %>">이전</a>
+    	<% for (int i = 1; i <= totalPage; i++) { %>
+        	<a href="tripReview.do?pageNo=<%=i %>" <%= (i == pageNo) ? "style='font-weight: bold;color:red;'" : "" %>><%=i %></a>
+    	<% } %>
+    	<a href="tripReview.do?pageNo=<%=next %>">다음</a>
+		</div>
+		
+		
+	<% } %>
+	
+
+</div>
 </section>
 
 

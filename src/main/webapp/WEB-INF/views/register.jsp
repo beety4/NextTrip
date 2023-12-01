@@ -6,7 +6,7 @@
 
 <style>
 	.emailInputSize {
-		width : 500px;
+		width : 75%;
 		float : left;
 	}
 	.emailInputBtn {

@@ -114,3 +114,74 @@ function editProfile() {
 }
 
 
+
+// 게시글 업로드 확인
+function addBoard() {
+	var title = document.getElementById("title");
+	var region = document.getElementById("region");
+	var content = document.getElementById("content");
+	
+	if(title.value == "") {
+		alert("제목을 입력해 주세요");
+		title.focus();
+		return false;
+	}
+	
+	if(region.value == "") {
+		alert("지역을 입력해 주세요");
+		region.focus();
+		return false;
+	}
+	
+	if(content.value == "") {
+		alert("내용을 입력해 주세요");
+		content.focus();
+		return false;
+	}
+	
+
+	document.addBoardIt.submit();
+}
+
+
+// 게시글 수정 확인
+function editBoard() {
+	var title = document.getElementById("title");
+	var region = document.getElementById("region");
+	var content = document.getElementById("content");
+	
+	if(title.value == "") {
+		alert("제목을 입력해 주세요");
+		title.focus();
+		return false;
+	}
+	
+	if(region.value == "") {
+		alert("지역을 입력해 주세요");
+		region.focus();
+		return false;
+	}
+	
+	if(content.value == "") {
+		alert("내용을 입력해 주세요");
+		content.focus();
+		return false;
+	}
+
+	document.editBoardIt.submit();
+}
+
+
+function commentAction() {
+	var comment = document.getElementById("comment");
+	
+	if(comment.value == "") {
+		alert("내용을 입력해주세요");
+		comment.focus();
+		return false;
+	}
+	
+	document.commentIt.submit();
+}
+
+

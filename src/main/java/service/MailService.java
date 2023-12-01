@@ -55,7 +55,7 @@ public class MailService {
 			// 메세지에 정보 담기
 			Authenticator auth = new GmailConn();
 		    Session ses = Session.getInstance(p, auth);
-		    MimeMessage msg = new MimeMessage(ses);
+		    final MimeMessage msg = new MimeMessage(ses);
 		    msg.setSubject(subject);
 		    Address fromAddr = new InternetAddress(from);
 		    msg.setFrom(fromAddr);

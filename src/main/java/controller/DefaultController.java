@@ -13,11 +13,11 @@ public class DefaultController implements CommandHandler {
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// 서비스 묶음
 		String uri = request.getRequestURI().substring(10);
-		return switch(uri) {
-			case "index.do" -> index(request, response);
-			case "error.do" -> error(request, response);
-			default -> null;
-		};
+		switch(uri) {
+			case "index.do": return index(request, response);
+			case "error.do": return error(request, response);
+			default: return null;
+		}
 	}
 	
 	

@@ -6,14 +6,14 @@ import java.util.List;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import config.ApiConn;
+import config.HttpConn;
 import config.RandModule;
 import dto.DefaultJson;
 import dto.TourSpotDTO;
 import dto.TourSpotDetailDTO;
 
 public class ApiService {
-	private ApiConn apiConn = new ApiConn();
+	private HttpConn httpConn = new HttpConn();
 	private ObjectMapper objectMapper = new ObjectMapper();
 	
 	// Index 화면에 표시될 지역별 랜덤 여행 정보 표시
@@ -33,7 +33,7 @@ public class ApiService {
 		
 		// 결과값 담을 List 선언 및 apiConn을 통해 json 가져오기
 		List<TourSpotDTO> tourSpotList = null;
-		String apiData = apiConn.getJson(sb.toString());
+		String apiData = httpConn.getJson(sb.toString());
 		try {
 			// json 데이터 파싱 하여 저장 후 List<T> 변환 하여 저장
 			DefaultJson<TourSpotDTO> parsing =  objectMapper.readValue(apiData, new TypeReference<DefaultJson<TourSpotDTO>>() {});
@@ -59,7 +59,7 @@ public class ApiService {
 		sb.append("&overviewYN=Y");
 		
 		TourSpotDetailDTO tourSpotDetailDTO = null;
-		String apiData = apiConn.getJson(sb.toString());
+		String apiData = httpConn.getJson(sb.toString());
 		try {
 			DefaultJson<TourSpotDetailDTO> parsing = objectMapper.readValue(apiData, new TypeReference<DefaultJson<TourSpotDetailDTO>>() {});
 			tourSpotDetailDTO = parsing.getDTO();
