@@ -25,9 +25,16 @@ public class TourSpotController implements CommandHandler {
 	// RequestMapping(value = "showTourSpot.do")
 	private String showTourSpot(HttpServletRequest request, HttpServletResponse response) {
 		ApiService apiService = new ApiService();
-		ArrayList<TourSpotDTO> randomTourSpotList =  apiService.getIndexTour();
+		// Method = Get
+		if ("GET".equals(request.getMethod())) {
+			ArrayList<TourSpotDTO> randomTourSpotList =  apiService.getIndexTour();
 		
-		request.setAttribute("randomTourSpotList", randomTourSpotList);
+			request.setAttribute("tourSpotList", randomTourSpotList);
+			return "showTourSpot";
+		}
+		// Method = Post
+		String id = request.getParameter("id");
+		
 		return "showTourSpot";
 	}
 	

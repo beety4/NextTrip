@@ -16,7 +16,6 @@
 	<input type="text" placeholder="지역을 입력해주세요!">
 	<input type="button" value="검색">
 
-
 		<div class="row">
 			<c:forEach var="p" items="${tourSpotList}">
 				<div class="col-md-4 mb-4">

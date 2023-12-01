@@ -103,15 +103,8 @@ public class ReviewController implements CommandHandler {
 		if ("GET".equals(request.getMethod())) {
 			return "tripReviewAdd";
 		}
-		
-		// Method = Post
-		ReviewDTO reviewDTO = ReviewDTO.builder()
-				.name((String)session.getAttribute("sNAME"))
-				.title(request.getParameter("title"))
-				.region(request.getParameter("region"))
-				.content(request.getParameter("content")).build();
-		
-		reviewService.addReview(reviewDTO);
+
+		reviewService.addReview(request, response);
 		return "redirect:tripReview.do?pageNo=1";
 	}
 	

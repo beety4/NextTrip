@@ -21,6 +21,9 @@
 			<div style="float:right">작성일 : ${reviewDTO.date }</div>
 		</div>
 		<div class="card-body" style="min-height: 250px;">
+			<c:if test="${not empty reviewDTO.img }">
+				<p style="text-align: center;"><img src="${reviewDTO.img }" width="300px;"></p>
+			</c:if>
 			${reviewDTO.content }
 		</div>
 		
@@ -54,7 +57,7 @@
       			${p.name } - ${p.date }<br>
       			${p.content }
       			<c:if test="${sNAME.equals(p.name) }">
-    				<form action="deleteReviewComment.do" method="post" style="float:right;">
+    				<form action="deleteReviewComment.do" method="post" style="float:right;" onsubmit="return confirm('댓글을 삭제하시겠습니까?');">
     					<input type="text" name="reviewNo" value="${reviewDTO.reviewNo }" style="display:none;">
     					<input type="text" name="commentNo" value="${p.commentNo }" style="display:none;">
    						<input type="submit" class="btn btn-danger" value="삭제">

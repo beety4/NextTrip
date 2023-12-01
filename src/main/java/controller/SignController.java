@@ -110,7 +110,7 @@ public class SignController implements CommandHandler {
 			HttpSession session = request.getSession();
 			String sID = (String)session.getAttribute("sID");
 			if(sID == null) {
-				return "redirect:index.do";
+				return "redirect:error.do?msg=401";
 			}
 			
 			UserDTO userDTO = signService.getUserDTO(sID);
@@ -118,27 +118,8 @@ public class SignController implements CommandHandler {
 			return "myProfile";
 		}
 		// Method = Post
-		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("sID");
-		String name = request.getParameter("name");
-		String password = request.getParameter("password");
-		String file = (String)request.getAttribute("file");
-		
-		if(file == null) {
-			// 파일이 비어있으면 -> 이름,비번만 변경
-			int result = signService.editProfile(id, name, password);
-			if(result == 1) {
-				return "redirect:myProfile.do";
-			}
-			return "redirect:error.do?msg=301";
-		}
-		// 파일이 있으면 ->  파일 업로드 및 이름,비번 변경
-		
-		int result = signService.editProfile(id, name, password, file);
-		if(result == 1) {
-			return "redirect:myProfile.do";
-		}
-		return "redirect:error.do?msg=301";
+		signService.editProfile(request, response);
+		return "redirect:index.do";
 	}
 
 	

@@ -5,6 +5,17 @@
 
 <script type="text/javascript" src="assets/js/validate.js"></script>
 <script>
+// 엔터키로 로그인
+function onEnterLogin(){
+	var keyCode = window.event.keyCode;
+	
+	if (keyCode == 13) {
+		loginCHK();
+	}
+}
+
+
+
 // 구글 요청 성공 이후 code 값 확인 후 후처리를 위한 함수 실행
 window.onload = function() {
 	handleAuthorizationCode();
@@ -127,7 +138,7 @@ function loginWithGoogle(userInfo) {
 
 
 
-<section class="pt-5" style="padding-top: 5rem; margin-top: 100px;">
+<section class="pt-5" style="padding-top: 5rem; margin-top: 100px;" onkeydown="javascript:onEnterLogin();">
 <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-9 col-lg-6 col-xl-5">

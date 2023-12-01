@@ -72,6 +72,7 @@ body {
 
 
 <section class="pt-5" style="padding-top: 5rem; margin-top: 100px;">
+<form action="myProfile.do" method="post" name="updateProfile" enctype="multipart/form-data">
 <div class="container-fluid h-custom">
 <div class="container">
 <div class="row gutters">
@@ -80,26 +81,27 @@ body {
 	<div class="card-body">
 		<div class="account-settings">
 			<div class="user-profile">
-				<div class="user-avatar">
-					<img src="assets/img/profileIMG/${userDTO.img }" alt="Maxwell Admin">
+				<div class="user-avatar"><br>
+					<img src="${userDTO.img }" alt=".." id="preview" width="100px;">
 				</div>
 				<h5 class="user-name">${userDTO.name }</h5>
 				<h6 class="user-email">${userDTO.email }</h6>
 			</div>
-			<!-- 
+
 			<div class="about">
-				<h5>About</h5>
-				<p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
+				<input type="file" id="file" name="file" onchange="fileProcess(this, 'assets/img/profileIMG/default.png');">
+				<br><br><br><br><br>
+				<p style="color:red;">모든 필드를 입력하셔야 변경 가능합니다.</p>
 			</div>
-			-->
+
 		</div>
 	</div>
 </div>
 </div>
+
 <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
 <div class="card h-100">
 	<div class="card-body">
-	<form action="myProfile.do" method="post" name="updateProfile" enctype="multipart/form-data">
 		<div class="row gutters">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 				<h6 class="mb-2 text-primary">Personal Details</h6>
@@ -166,13 +168,13 @@ body {
 				</div>
 			</div>
 		</div>
-		</form>
 	</div>
 </div>
 </div>
 </div>
 </div>
 </div>
+</form>
 </section>
 
 

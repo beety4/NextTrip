@@ -16,7 +16,7 @@
 	<!-- 게시글 작성, 수정 폼 idEdit 변수로 작성인지 편집인지 판별 -->
 	<c:choose>
 	<c:when test="${isEdit == null }">
-	<form action="addReview.do" method="post" name="addBoardIt" id="reviewForm">
+	<form action="addReview.do" method="post" name="addBoardIt" id="reviewForm" enctype="multipart/form-data">
 		<table class="table table-bordered customize">
 			<tr>
 				<th>제목</th>
@@ -30,6 +30,13 @@
 				<th>내용</th>
 				<td><textarea class="form-control" id="content" name="content" placeholder="여행 후기를 작성해주세요!"
 								maxlength="4096" style="height: 300px;"></textarea></td>
+			</tr>
+			<tr>
+				<th>파일</th>
+				<td>
+					<input type="file" id="file" name="file" onchange="fileProcess(this, 'assets/img/reviewIMG/default.png');">
+					<img src="" id="preview" width="300px;">
+				</td>
 			</tr>
 		</table>
 

@@ -121,7 +121,8 @@ public class ReviewDAO {
 						.content(rs.getString(5))
 						.date(rs.getString(6))
 						.viewC(rs.getInt(7))
-						.likeC(rs.getInt(9))
+						.img(rs.getString(9))
+						.likeC(rs.getInt(10))
 						.build();
 				return reviewDTO;
 			}
@@ -134,13 +135,14 @@ public class ReviewDAO {
 	
 	// 게시글 작성하기
 	public int addReview(ReviewDTO reviewDTO) {
-		String query = "INSERT INTO review_table(name, title, region, content) VALUES(?,?,?,?)";
+		String query = "INSERT INTO review_table(name, title, region, content, img) VALUES(?,?,?,?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, reviewDTO.getName());
 			pstmt.setString(2, reviewDTO.getTitle());
 			pstmt.setString(3, reviewDTO.getRegion());
 			pstmt.setString(4, reviewDTO.getContent());
+			pstmt.setString(5, reviewDTO.getImg());
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

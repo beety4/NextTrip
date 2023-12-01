@@ -1,10 +1,21 @@
 package service;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import dao.ReviewDAO;
 import dto.CommentDTO;
 import dto.ReviewDTO;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 
 public class ReviewService {
 	private ReviewDAO reviewDAO;
@@ -43,10 +54,52 @@ public class ReviewService {
 		return reviewDAO.getReviewDetail(reviewNo);
 	}
 	
-	// review 작성하기 -> 맨 아래 주석 참고
-	public int addReview(ReviewDTO reviewDTO) {
-		return reviewDAO.addReview(reviewDTO);
+
+	// review 작성하기 with fileUpload -> 시도과정 맨아래 주석 참고
+	public void addReview(HttpServletRequest request, HttpServletResponse response) {
+		String uploadPath = request.getServletContext().getRealPath("/") + "\\assets\\img\\reviewIMG";
+		int maxSize = 3 * 1024 * 1024;	// 3MB 제한
+		
+		try {
+			// FileItem 오브젝트 생성용 객체
+			DiskFileItemFactory factory = new DiskFileItemFactory();
+			factory.setRepository(new File(uploadPath));
+			factory.setSizeThreshold(maxSize);
+
+			// 파일 업로드 핸들러 생성
+			ServletFileUpload upload = new ServletFileUpload(factory);
+
+			// request 객체의 데이터를 Map<String, List<FileItem> 형태로 파싱 이후 파라미터 가져오기
+			Map<String, List<FileItem>> formMap = upload.parseParameterMap(request);
+			String title = formMap.get("title").get(0).getString("UTF-8");
+			String region = formMap.get("region").get(0).getString("UTF-8");
+			String content = formMap.get("content").get(0).getString("UTF-8");
+			String fileName = null;
+			
+			// 파일 첨부 시
+			FileItem receiveFile = formMap.get("file").get(0);
+			if(receiveFile.getSize() > 0) {
+				// 업로드 된 파일 처리
+				fileName = receiveFile.getName();
+				File saveFile = new File(uploadPath + "\\" + fileName);
+				receiveFile.write(saveFile);	// 업로드-저장
+			}
+			
+			// DB 저장을 위한 객체 생성
+			ReviewDTO reviewDTO = ReviewDTO.builder()
+					.name((String)request.getSession().getAttribute("sNAME"))
+					.title(title)
+					.region(region)
+					.content(content)
+					.img((fileName == null) ? null :  "assets\\img\\reviewIMG\\"+fileName).build();
+			
+			// 내용 DB에 저장
+			reviewDAO.addReview(reviewDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
+	
 	
 	// review 삭제하기
 	public int deleteReview(int reviewNo) {
@@ -118,15 +171,16 @@ public class ReviewService {
 		return getLikeCnt(reviewNo);
 	}
 	
+	
 }
 
 /*
- * == 파일 업로드 오류 처리 로그(미해결) ==
+ * == 파일 업로드 오류 처리 로그(해결!!) ==
  * 1. cos.jar 라이브러리를 이용하여 MultipartRequest 로 파일 업로드 처리 시도
  * 1-1. 에러 -> 현재 개발환경 Tomcat v10.0에선 cos 지원하지 않음.
  * 	           Tomcat을 9.0으로 다운그레이드
  *             JDK 버전도 1.8로 다운그레이드가 필요
- *             Servlet에러 발생( 보류 )
+ *             Servlet에러 발생( 보류 ) -> 메인 controller에서 문제 발생 왜일까..
  * 
  * 2. apache common fileupload 라이브러리를 이용하여 파일 업로드 처리 시도
  * 2-1. 에러 -> 현재 개발환경 JDK17과 동시에 모든 서블릿 관련 파일(HttpServletRequest 등..)을 javax -> jakarta로 사용중
@@ -139,4 +193,11 @@ public class ReviewService {
  * 3-1. 제거 기능 -> 게시글 단일, 다중 파일 업로드
  *                프로필 사진 업로드 및 수정 기능
  * 
+ * 4. tomcat10에서 제공하는 org.apache.tomcat....ServletFileUpload 발견
+ * 4-1. 에러 -> 해당객체의 메소드가 인터넷 자료들과 많이 다름
+ *             parseRequest를 통해 List<FileItem> 형태로 파싱 하지만 해당 메소드가 없음
+ *             parseParameterMap 메소드로 대체 가능 -> Map<String, List<FileItem> 형태로 저장
+ *             인터넷 참고하며 다시 코드 빌드
+ *             성공~!
+ *             
  */

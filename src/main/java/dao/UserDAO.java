@@ -119,32 +119,15 @@ public class UserDAO {
 	
 	
 	// 메소드 오버로딩을 통한 프로필 편집 ( name, password )
-	public int editProfile(String id, String name, String password) {
-		String SQL = "UPDATE user_table SET name = ?, password = ? WHERE id = ?";
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			String digest = cryptoModule.getSHA256(password);
-			pstmt.setString(1, name);
-			pstmt.setString(2, digest);
-			pstmt.setString(3, id);
-
-			return pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return -1;
-	}
-
-	// 메소드 오버로딩을 통한 프로필 편집 ( name, password, img )
-	public int editProfile(String id, String name, String password, String img) {
+	public int editProfile(UserDTO userDTO) {
 		String SQL = "UPDATE user_table SET name = ?, password = ?, img = ? WHERE id = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			String digest = cryptoModule.getSHA256(password);
-			pstmt.setString(1, name);
+			String digest = cryptoModule.getSHA256(userDTO.getPassword());
+			pstmt.setString(1, userDTO.getName());
 			pstmt.setString(2, digest);
-			pstmt.setString(3, img);
-			pstmt.setString(4, id);
+			pstmt.setString(3, userDTO.getImg());
+			pstmt.setString(4, userDTO.getId());
 
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -152,8 +135,7 @@ public class UserDAO {
 		}
 		return -1;
 	}
-	
-	
+
 	
 
 }

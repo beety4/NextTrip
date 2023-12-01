@@ -19,4 +19,5 @@ public class ReviewDTO {
 	private int viewC;
 	private int likeC;
 	private int available;
+	private String img;
 }
