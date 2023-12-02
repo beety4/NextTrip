@@ -8,7 +8,7 @@ import config.CryptoModule;
 import config.Mysql;
 import dto.UserDTO;
 
-public class UserDAO {
+public class SignDAO {
 	private Connection conn = Mysql.getConnection();
 	private CryptoModule cryptoModule = new CryptoModule();
 

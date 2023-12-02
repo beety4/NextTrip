@@ -11,31 +11,31 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import config.RandModule;
-import dao.UserDAO;
+import dao.SignDAO;
 import dto.UserDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 public class SignService {
-	private UserDAO userDAO;
+	private SignDAO signDAO;
 	private ObjectMapper objectMapper;
 	
 	public SignService() {
-		userDAO = new UserDAO();
+		signDAO = new SignDAO();
 		objectMapper = new ObjectMapper();
 	}
 	
 	public int login(String id, String password) {
-		return userDAO.login(id, password);
+		return signDAO.login(id, password);
 	}
 	
 	public UserDTO getUserDTO(String id) {
-		return userDAO.getUserDTO(id);
+		return signDAO.getUserDTO(id);
 	}
 	
 	public int register(UserDTO userDTO) {
-		return userDAO.register(userDTO);
+		return signDAO.register(userDTO);
 	}
 	
 	// 프로필 편집 
@@ -77,7 +77,7 @@ public class SignService {
 			userDTO.setImg((fileName == null) ? "assets\\img\\profileIMG\\default.png" : "assets\\img\\profileIMG\\" + fileName);
 			
 			// 내용 DB에 저장
-			userDAO.editProfile(userDTO);
+			signDAO.editProfile(userDTO);
 			
 			// 세션값 재설정
 			UserDTO changeDTO = getUserDTO(id);
@@ -105,7 +105,7 @@ public class SignService {
 		}
 		
 		// 이미 DB에 회원가입 되어 있다면
-		UserDTO dbUserDTO = userDAO.getUserDTO(sub, "GOOGLE");
+		UserDTO dbUserDTO = signDAO.getUserDTO(sub, "GOOGLE");
 		if(dbUserDTO != null) {
 			return dbUserDTO;
 		}
@@ -120,6 +120,6 @@ public class SignService {
 				.principal("GOOGLE").build();
 		
 		register(userDTO);
-		return userDAO.getUserDTO(sub, "GOOGLE");
+		return signDAO.getUserDTO(sub, "GOOGLE");
 	}
 }

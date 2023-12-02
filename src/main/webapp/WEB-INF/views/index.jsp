@@ -15,7 +15,7 @@
               <h4 class="fw-bold text-danger mb-3">Best Destinations around Korea</h4>
               <h1 class="hero-title">Travel, enjoy and live a new and full life</h1>
               <p class="mb-4 fw-medium">Going on a trip is another great experience facing myself.<br class="d-none d-xl-block" />Find the meaning of life by going on a trip, make a good connection,<br class="d-none d-xl-block" />and get out of the stress of everyday life!</p>
-              <div class="text-center text-md-start"> <a class="btn btn-primary btn-lg me-md-4 mb-3 mb-md-0 border-0 primary-btn-shadow" href="makePlan.do" role="button">Make New Plan</a>
+              <div class="text-center text-md-start"> <!-- <a class="btn btn-primary btn-lg me-md-4 mb-3 mb-md-0 border-0 primary-btn-shadow" href="makePlan.do" role="button">Make New Plan</a> -->
                 <div class="modal fade" id="popupVideo" tabindex="-1" aria-labelledby="popupVideo" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">

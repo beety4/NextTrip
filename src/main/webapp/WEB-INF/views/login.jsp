@@ -161,7 +161,7 @@ function loginWithGoogle(userInfo) {
           <!-- Email input -->
           <div class="form-outline mb-4">
             <input type="text" id="id" name="id" class="form-control form-control-lg"
-              placeholder="Enter ID" />
+              placeholder="Enter ID" autofocus="autofocus" />
           </div>
 
           <!-- Password input -->
@@ -173,12 +173,11 @@ function loginWithGoogle(userInfo) {
           <div class="d-flex justify-content-between align-items-center">
             <!-- Checkbox -->
             <div class="form-check mb-0">
-              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+              <input class="form-check-input me-2" type="checkbox" value="true" id="tf" name="tf" />
               <label class="form-check-label" for="form2Example3">
                 Remember me
               </label>
             </div>
-            <a href="forgot-password.do" class="text-body">Forgot password?</a>
           </div>
 
           <div class="text-center text-lg-start mt-4 pt-2">

@@ -224,9 +224,9 @@ public class ReviewController implements CommandHandler {
 		HttpSession session = request.getSession();
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
 		
-		if(session.getAttribute("sNAME") == null) {
-			return "redirect:error.do?msg=401";
-		}
+//		if(session.getAttribute("sNAME") == null) {
+//			return "redirect:error.do?msg=401";
+//		}
 		String name = (String) session.getAttribute("sNAME");
 
 		// 좋아요 여부 반환 1: yes , 2 : no

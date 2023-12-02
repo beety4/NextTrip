@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
@@ -181,6 +180,8 @@ public class ReviewService {
  * 	           Tomcat을 9.0으로 다운그레이드
  *             JDK 버전도 1.8로 다운그레이드가 필요
  *             Servlet에러 발생( 보류 ) -> 메인 controller에서 문제 발생 왜일까..
+ *             수정! - 버전 다운그레이드로 인한 jakarta -> javax 로 서블릿 경로 모두 수정 필요
+ *                    수정 후 정상 작동 확인 완료(4번 에러까지 다 시도 하고 확인함..ㅠ)
  * 
  * 2. apache common fileupload 라이브러리를 이용하여 파일 업로드 처리 시도
  * 2-1. 에러 -> 현재 개발환경 JDK17과 동시에 모든 서블릿 관련 파일(HttpServletRequest 등..)을 javax -> jakarta로 사용중

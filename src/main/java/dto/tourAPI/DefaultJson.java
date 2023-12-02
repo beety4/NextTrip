@@ -1,4 +1,4 @@
-package dto;
+package dto.tourAPI;
 
 import java.util.List;
 

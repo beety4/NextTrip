@@ -2,7 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 
-import dto.TourSpotDTO;
+import dto.tourAPI.TourSpotDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import service.ApiService;

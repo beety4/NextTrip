@@ -115,7 +115,7 @@ body {
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div class="form-group">
 					<label for="eMail">Name</label>
-					<input type="email" class="form-control" id="name" name="name" value="${userDTO.name }">
+					<input type="email" class="form-control" id="name" name="name" value="${userDTO.name }" autofocus="autofocus">
 				</div>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">

@@ -21,7 +21,7 @@
 			<tr>
 				<th>제목</th>
 				<td><input type="text" class="form-control" placeholder="제목을 적어주세요."
-					id="title" name="title" maxlength="100"></td>
+					id="title" name="title" maxlength="100" autofocus="autofocus"></td>
 			</tr><tr>
 				<th>지역</th>
 				<td><input type="text" class="form-control" placeholder="여행 지역을 입력해주세요"
@@ -45,7 +45,7 @@
 	</c:when>
 	<c:when test="${isEdit == true }">
 	<form action="editReview.do" method="post" name="editBoardIt">
-		<input type="text" name="reviewNo" value="${reviewDTO.reviewNo }" style="display: none;">
+		<input type="text" name="reviewNo" value="${reviewDTO.reviewNo }" style="display: none;" autofocus="autofocus">
 		<table class="table table-bordered customize">
 			<tr>
 				<th>제목</th>

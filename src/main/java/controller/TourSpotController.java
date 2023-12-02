@@ -1,9 +1,10 @@
 package controller;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
-import dto.TourSpotDTO;
-import dto.TourSpotDetailDTO;
+import dto.tourAPI.TourSpotDetailDTO;
+import dto.tourAPI.TourSpotSearchDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import service.ApiService;
@@ -27,14 +28,19 @@ public class TourSpotController implements CommandHandler {
 		ApiService apiService = new ApiService();
 		// Method = Get
 		if ("GET".equals(request.getMethod())) {
-			ArrayList<TourSpotDTO> randomTourSpotList =  apiService.getIndexTour();
-		
-			request.setAttribute("tourSpotList", randomTourSpotList);
 			return "showTourSpot";
 		}
 		// Method = Post
-		String id = request.getParameter("id");
+		String keyword = null;
+		try {
+			keyword = URLEncoder.encode(request.getParameter("keyword"), "UTF-8");	
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
+		String contentTypeId = request.getParameter("contentTypeId");
+		ArrayList<TourSpotSearchDTO> tourSpotSearchList = apiService.getTourSpotSearch(keyword, contentTypeId);
+		request.setAttribute("tourSpotSearchList", tourSpotSearchList);
 		return "showTourSpot";
 	}
 	

@@ -1,6 +1,7 @@
 package controller;
 
 import dto.UserDTO;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -60,6 +61,14 @@ public class SignController implements CommandHandler {
 			session.setAttribute("sNAME", sNAME);
 			session.setAttribute("sIMG", sIMG);
 			session.setMaxInactiveInterval(60 * 60); // 60초 * 60 -> 1시간
+			
+			// 자동 로그인 체크 시 쿠키 저장
+			String isMaintain = request.getParameter("tf");
+			if(isMaintain != null) {
+				Cookie cookie = new Cookie("cID", id);
+				response.addCookie(cookie);
+			}
+			
 			return "redirect:index.do";
 		case 0:  return "redirect:error.do?msg=201";
 		case -2: return "redirect:error.do?msg=202";
@@ -126,8 +135,22 @@ public class SignController implements CommandHandler {
 	
 	// RequestMapping(value = "logout.do")
 	private String logout(HttpServletRequest request, HttpServletResponse response) {
+		// 세션 로그아웃 처리
 		HttpSession session = request.getSession();
 		session.invalidate();
+		
+		// 쿠키 로그아웃 처리
+		Cookie[] cookies = request.getCookies();
+	    if(cookies != null && cookies.length > 0){
+	    	for(Cookie c : cookies){
+	    		if(c.getName().equals("cID")){
+	    			Cookie cookie = new Cookie("cID", "");
+	    			cookie.setMaxAge(0);
+	                response.addCookie(cookie);
+	            }
+	        }
+	    }
+	    
 		return "redirect:index.do";
 	}
 	

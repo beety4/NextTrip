@@ -8,9 +8,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import config.HttpConn;
 import config.RandModule;
-import dto.DefaultJson;
-import dto.TourSpotDTO;
-import dto.TourSpotDetailDTO;
+import dto.tourAPI.DefaultJson;
+import dto.tourAPI.TourSpotDTO;
+import dto.tourAPI.TourSpotDetailDTO;
+import dto.tourAPI.TourSpotImgDTO;
+import dto.tourAPI.TourSpotSearchDTO;
 
 public class ApiService {
 	private HttpConn httpConn = new HttpConn();
@@ -67,10 +69,68 @@ public class ApiService {
 			e.printStackTrace();
 		}
 		
+		// 해당 content의 이미지 정보 가져옴
+		// 만약 이미지가 없다면(null) -> 기본 이미지로 대체
+		ArrayList<TourSpotImgDTO> tourSpotImgList = getTourSpotImgList(contentid);
+		if(tourSpotImgList == null) {
+			tourSpotImgList = new ArrayList<>();
+			
+			TourSpotImgDTO tmp = new TourSpotImgDTO();
+			if(tourSpotDetailDTO.getFirstimage() == null) {
+				tmp.setOriginimgurl("assets/img/noImage.png");
+			} else {
+				tmp.setOriginimgurl(tourSpotDetailDTO.getFirstimage());
+			}
+			tourSpotImgList.add(tmp);
+		}
+		
+		tourSpotDetailDTO.setTourSpotImgList(tourSpotImgList);
 		return tourSpotDetailDTO;
 	}
 	
 	
-	// 
+	// contnetId로 이미지 정보 가져오기
+	public ArrayList<TourSpotImgDTO> getTourSpotImgList(String contentid) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("/detailImage1");
+		sb.append("?contentId=" + contentid);
+		sb.append("&imageYN=Y");
+		sb.append("&subImageYN=Y");
+		
+		List<TourSpotImgDTO> tourSpotImgList = null;
+		String apiData = httpConn.getJson(sb.toString());
+		try {
+			DefaultJson<TourSpotImgDTO> parsing = objectMapper.readValue(apiData, new TypeReference<DefaultJson<TourSpotImgDTO>>() {});
+			// 요청 API에 이미지가 없을 경우 nul로 반환
+			tourSpotImgList = parsing.getDTOList();
+		}catch(Exception e) {
+			System.out.println("==NO IMAGE==");
+			e.printStackTrace();
+		}
+		
+		return (ArrayList<TourSpotImgDTO>) tourSpotImgList;
+	}
 
+	
+	public ArrayList<TourSpotSearchDTO> getTourSpotSearch(String keyword, String contentTypeId) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("/searchKeyword1");
+		sb.append("?keyword=" + keyword);
+		sb.append("&listYN=Y");
+		sb.append("&arrange=A");
+		sb.append("&contentTypeId=" + contentTypeId);
+		
+		List<TourSpotSearchDTO> tourSpotSearchList = null;
+		String apiData = httpConn.getJson(sb.toString());
+		try {
+			DefaultJson<TourSpotSearchDTO> parsing = objectMapper.readValue(apiData, new TypeReference<DefaultJson<TourSpotSearchDTO>>() {});
+			tourSpotSearchList = parsing.getDTOList();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	
+		return (ArrayList<TourSpotSearchDTO>) tourSpotSearchList;
+	}
+	
+	
 }

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 public class HttpConn {
 	// 기본 API 요청 URL 및 파라미터 설정
@@ -40,6 +41,8 @@ public class HttpConn {
 			System.out.println("=====Http Conn ERROR=====");
 			e.printStackTrace();
 		}
+		//System.out.println("URL : " + baseURL+ param + serviceKey + defaultParam);
+		//System.out.println(result.toString());
 		
 		// 받은 json 결과값 반환
 		return result.toString();

@@ -1,5 +1,5 @@
 // Menu display JS
-
+// Plan 위한거였으나 폐기처리
 function showdown() {
 	var summaryC = document.getElementById('summary');
 	var detailsC = document.getElementById('details');

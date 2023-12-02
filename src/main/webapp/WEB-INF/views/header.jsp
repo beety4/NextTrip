@@ -31,6 +31,7 @@
     <!--    Stylesheets-->
     <!-- ===============================================-->
     <link href="/NextTrip/assets/css/theme.css" rel="stylesheet" />
+    <link href="assets/css/theme.css" rel="stylesheet" />
 
   </head>
 
@@ -48,9 +49,9 @@
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="index.do#service">소개</a></li>
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="showTourSpot.do">여행지</a></li>
               <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="tripReview.do?pageNo=1">여행후기</a></li>
-              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="myPlan.do">내 여행</a></li>
+              <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="bookmark.do">북마크</a></li>
               <%
-              	if((String)session.getAttribute("sID") == null) {
+              	if(session.getAttribute("sID") == null) {
               %>
               <li class="nav-item px-3 px-xl-4"><a class="btn btn-outline-dark order-1 order-lg-0 fw-medium" href="sign-in.do">로그인</a></li>
               <%
